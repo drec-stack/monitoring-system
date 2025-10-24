@@ -1,0 +1,20 @@
+[Unit]
+Description=Process Monitoring Service
+Documentation=https://github.com/your-username/process-monitoring-system
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=/usr/local/bin/process_monitor.sh
+StandardOutput=journal
+StandardError=journal
+# Security settings
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/log /var/lib/monitoring /var/run
+
+[Install]
+WantedBy=multi-user.target
